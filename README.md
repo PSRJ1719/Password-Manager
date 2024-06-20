@@ -8,9 +8,3 @@ A simple password manager that encrypts and stores your passwords using Fernet e
 
 - Python 3.x
 - `cryptography` library
-
-## Setup
-
-Clone the repository:
-
-git clone https://github.com/yourusername/password-manager.git
