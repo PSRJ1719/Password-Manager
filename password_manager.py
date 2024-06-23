@@ -1,19 +1,24 @@
+import os
 from cryptography.fernet import Fernet
 
 def write_key():
     """
-    Generates a new key and saves it into a file named 'key.key'.
+    Generates a new key and saves it into a file named 'key.txt'.
     """
     key = Fernet.generate_key()
-    with open("key.key", "wb") as key_file:
+    with open("key.txt", "wb") as key_file:
         key_file.write(key)
 
 def load_key():
     """
-    Loads the key from the 'key.key' file.
+    Loads the key from the 'key.txt' file.
     """
-    with open("key.key", "rb") as key_file:
+    with open("key.txt", "rb") as key_file:
         return key_file.read()
+
+# Check if the key file exists, if not, generate one
+if not os.path.exists("key.txt"):
+    write_key()
 
 # Ensure the key is loaded only once
 key = load_key()
@@ -41,7 +46,7 @@ def add():
     name = input('Account Name: ')
     pwd = input('Password: ')
     encrypted_password = fer.encrypt(pwd.encode()).decode()
-    
+
     with open('passwords.txt', 'a') as f:
         f.write(f"{name}|{encrypted_password}\n")
 
